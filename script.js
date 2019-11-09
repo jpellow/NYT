@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $("#button").on("click", function() {
-        var queryUrl = "https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=romney&facet_field=day_of_week&facet=true&begin_date=" + startYear +"&end_date=20120101&api-key="
-        var term = $("#term").val();
+        var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" + term + "&api-key=Q9aJkIiXSXWzACWqx4PHdHikKoQ9KwSs";
+        var term = $("#term").val().trim();
         //console.log(term);
         var records = $("#records").val();
         //console.log(records);
@@ -15,6 +15,12 @@ $(document).ready(function () {
         if (isNaN(endYear)){
             alert("Please enter an end year");
         }
+        $.ajax({
+        url: queryURL,
+        method: "GET"
+        }).then(function(response) {
+       console.log(response);
+   })
 
         console.log(endYear);
     });
